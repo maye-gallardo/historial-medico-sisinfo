@@ -1,0 +1,23 @@
+INSERT INTO role (name)
+SELECT * FROM (SELECT 'CLIENTE') AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM role WHERE name = 'CLIENTE'
+) LIMIT 1;
+
+INSERT INTO category (name)
+SELECT * FROM (SELECT 'ANALISIS') AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM category WHERE name = 'ANALISIS'
+) LIMIT 1;
+
+INSERT INTO category (name)
+SELECT * FROM (SELECT 'CONSULTA') AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM category WHERE name = 'CONSULTA'
+) LIMIT 1;
+
+INSERT INTO category (name)
+SELECT * FROM (SELECT 'EXAMEN MEDICO') AS tmp
+WHERE NOT EXISTS (
+    SELECT name FROM category WHERE name = 'EXAMEN MEDICO'
+) LIMIT 1;
