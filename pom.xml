@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-bom</artifactId>
-            <version>4.2.2.RELEASE</version>
+            <version>5.0.5.RELEASE</version>
         </dependency>
 
         <dependency>
