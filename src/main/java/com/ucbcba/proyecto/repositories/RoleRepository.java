@@ -1,6 +1,5 @@
 package com.ucbcba.proyecto.repositories;
 
-import com.ucbcba.proyecto.entities.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import javax.transaction.Transactional;
 
