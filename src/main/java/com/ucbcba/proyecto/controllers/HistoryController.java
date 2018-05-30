@@ -39,7 +39,7 @@ public class HistoryController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
-        return "redirect/histories";
+        return "redirect:/histories";
     }
 
     @RequestMapping(value = "/history/new", method = RequestMethod.GET)
