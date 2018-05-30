@@ -35,8 +35,6 @@ public class HistoryController {
         this.categoryService = categoryService;
     }
 
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Model model) {
         return "redirect:/histories";
@@ -49,10 +47,6 @@ public class HistoryController {
         java.sql.Date today = new java.sql.Date(date.getTime());
         history.setDate(today);
         Iterable<Category> Categories = categoryService.listAllCategorys();
-
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        model.addAttribute("use",user );*/
         model.addAttribute("categories", Categories);
         model.addAttribute("history", history);
         return "History/historyForm";
@@ -63,13 +57,6 @@ public class HistoryController {
         if(bindingResult.hasErrors()){
             return "History/historyForm";
         }
-
-        /*try {
-
-           uploadFileService.saveFile(file ,history.getTitle());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
         historyService.saveHistory(history);
         return "redirect:/histories";
     }
@@ -86,10 +73,6 @@ public class HistoryController {
         model.addAttribute("history", historyService.getHistory(id));
         Iterable<Category> Categories = categoryService.listAllCategorys();
         model.addAttribute("categories", Categories);
-
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        model.addAttribute("use",user );*/
         return "History/editHistory";
     }
 
@@ -101,18 +84,12 @@ public class HistoryController {
 
     @RequestMapping(value = "/histories", method = RequestMethod.GET)
     public String list(Model model) {
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        model.addAttribute("histories", user.getHistories());
-        model.addAttribute("nameA",user.getUsername() );*/
+        model.addAttribute("histories", historyService.listAllHistories());
         return "History/histories";
     }
 
     @RequestMapping(value = "/histories/busqueda/{word}", method = RequestMethod.GET)
     public String busqueda(@PathVariable String word,Model model) {
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());*/
-
         List<History> histories=(List<History>)historyService.listAllHistories();
         List<History> aux=new ArrayList<>();
         for (History history : histories){
@@ -152,9 +129,6 @@ public class HistoryController {
                 }
             }
         }
-        /*Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        User user = userService.findUserByEmail(auth.getName());
-        model.addAttribute("nameA",user.getUsername() );*/
         model.addAttribute("histories", histories);
         return "History/histories";
     }
